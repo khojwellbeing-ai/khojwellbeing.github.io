@@ -175,6 +175,11 @@
   .footer-social { margin-top: 0.9rem; }
   .footer-social a { color: var(--moss); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
   .footer-social a:hover { text-decoration: underline; }
+
+  .about-more { display: none; }
+  .about-more.expanded { display: block; }
+  .about-toggle-btn { background: none; border: none; color: var(--sage); font-weight: 600; cursor: pointer; padding: 0.3rem 0; margin: 0 0 1rem; font-size: 0.95rem; font-family: inherit; }
+  .about-toggle-btn:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -278,9 +283,12 @@
       <h2>Hi, I am Shailja!</h2>
       <div class="about-sub">Counselling Psychologist · Delhi</div>
       <p>I work with children, adolescents, parents and educators across schools, communities and therapeutic settings for the past four years. My work spans counselling support, facilitating life skills and wellbeing workshops with parents, teachers and school leaders to strengthen support systems for youth.</p>
+      <div class="about-more" id="aboutMore">
       <p>My work with youth on concerns like anxiety, grief, body image, trauma and neurodivergent issues helped me understand how wellbeing is rarely an individual work — it lives inside our families, communities and structural systems.</p>
       <p>With the belief to honor the context of all our untangled emotions and thoughts, my practice uses a trauma-informed lens with techniques drawn from person-centred, emotion-focused and art-based approaches. Therapy here is about exploring patterns, sitting with discomfort and understanding it — rather than trying to 'fix it.'</p>
       <p style="font-style:italic; color: var(--sage); font-size:0.9rem;">Apart from talking about emotions, reading, cuddling furry babies, cooking, and spending time in nature (from going for long walks to lying in grass) are some of my grounding practices. If this aligns with you, let's embark on the journey toward healing and self-discovery together — and yes, that's how I landed with the name Khoj.</p>
+      </div>
+      <button type="button" class="about-toggle-btn" id="aboutToggle" aria-expanded="false">Know More ↓</button>
       <div class="tags">
         <span class="tag">Trauma-Informed</span>
         <span class="tag">Person-Centred</span>
@@ -536,6 +544,20 @@
   if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
   if (overlay) overlay.addEventListener('click', closeDrawer);
   if (drawer) drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeDrawer); });
+})();
+</script>
+
+<script>
+(function(){
+  var btn = document.getElementById('aboutToggle');
+  var more = document.getElementById('aboutMore');
+  if(btn && more){
+    btn.addEventListener('click', function(){
+      var expanded = more.classList.toggle('expanded');
+      btn.textContent = expanded ? 'Show Less ↑' : 'Know More ↓';
+      btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    });
+  }
 })();
 </script>
 </body>
